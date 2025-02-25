@@ -1,51 +1,107 @@
-import { Card } from '@/components/common'
+import React from 'react'
+import { Card, Row, Col, Statistic, Typography } from 'antd'
+import { TeamOutlined, UserOutlined, ShopOutlined, RiseOutlined } from '@ant-design/icons'
 import styled from 'styled-components'
+import { useSelector } from 'react-redux'
+import { RootState } from '@store/index'
+import { UserRole } from '@models'
 
-const DashboardGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 24px;
+const { Title } = Typography
+
+const PageHeader = styled.div`
   margin-bottom: 24px;
 `
 
-const StatCard = styled(Card)`
-  text-align: center;
+const StyledCard = styled(Card)`
+  height: 100%;
+  .ant-card-body {
+    height: 100%;
+  }
 `
 
-const StatValue = styled.div`
-  font-size: var(--font-size-2xl);
-  font-weight: 700;
-  color: var(--primary-500);
-  margin-bottom: 8px;
+const StatisticCard = styled(Card)`
+  .ant-statistic-title {
+    font-size: 16px;
+    margin-bottom: 16px;
+  }
+  .ant-statistic-content-value {
+    font-size: 24px;
+    font-weight: 600;
+  }
 `
 
-const StatLabel = styled.div`
-  font-size: var(--font-size-sm);
-  color: var(--neutral-600);
-`
+const Dashboard: React.FC = () => {
+  const { user } = useSelector((state: RootState) => state.auth)
+  const isAdmin = user.roles.includes(UserRole.ADMIN)
 
-export const Dashboard = () => {
   return (
     <div>
-      <h1>Dashboard</h1>
-      <DashboardGrid>
-        <StatCard>
-          <StatValue>128</StatValue>
-          <StatLabel>Total Customers</StatLabel>
-        </StatCard>
-        <StatCard>
-          <StatValue>64</StatValue>
-          <StatLabel>Active Orders</StatLabel>
-        </StatCard>
-        <StatCard>
-          <StatValue>$12,480</StatValue>
-          <StatLabel>Monthly Revenue</StatLabel>
-        </StatCard>
-      </DashboardGrid>
-      <Card title="Recent Activity">
-        {/* Add activity list here */}
-        <p>No recent activity</p>
-      </Card>
+      <PageHeader>
+        <Title level={2}>Dashboard</Title>
+        <Typography.Text type="secondary">
+          Welcome back, {user.username}!
+        </Typography.Text>
+      </PageHeader>
+
+      <Row gutter={[24, 24]}>
+        <Col xs={24} sm={12} lg={6}>
+          <StatisticCard>
+            <Statistic
+              title="Total Customers"
+              value={156}
+              prefix={<TeamOutlined />}
+              valueStyle={{ color: '#2196F3' }}
+            />
+          </StatisticCard>
+        </Col>
+        <Col xs={24} sm={12} lg={6}>
+          <StatisticCard>
+            <Statistic
+              title="Active Customers"
+              value={124}
+              prefix={<ShopOutlined />}
+              valueStyle={{ color: '#4CAF50' }}
+            />
+          </StatisticCard>
+        </Col>
+        <Col xs={24} sm={12} lg={6}>
+          <StatisticCard>
+            <Statistic
+              title="New Leads"
+              value={32}
+              prefix={<RiseOutlined />}
+              valueStyle={{ color: '#FFC107' }}
+            />
+          </StatisticCard>
+        </Col>
+        {isAdmin && (
+          <Col xs={24} sm={12} lg={6}>
+            <StatisticCard>
+              <Statistic
+                title="Total Users"
+                value={12}
+                prefix={<UserOutlined />}
+                valueStyle={{ color: '#9C27B0' }}
+              />
+            </StatisticCard>
+          </Col>
+        )}
+      </Row>
+
+      <Row gutter={[24, 24]} style={{ marginTop: 24 }}>
+        <Col xs={24} lg={16}>
+          <StyledCard title="Recent Activity">
+            {/* TODO: Add activity timeline component */}
+            <p>Recent customer interactions will be displayed here.</p>
+          </StyledCard>
+        </Col>
+        <Col xs={24} lg={8}>
+          <StyledCard title="Quick Actions">
+            {/* TODO: Add quick action buttons */}
+            <p>Common actions will be available here.</p>
+          </StyledCard>
+        </Col>
+      </Row>
     </div>
   )
 }

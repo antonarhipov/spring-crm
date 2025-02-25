@@ -54,7 +54,7 @@ class AuthController(
             val token = jwtService.generateToken(userDetails)
 
             ResponseEntity.ok(LoginResponse(token))
-        } catch (e: BadCredentialsException) {
+        } catch (_: BadCredentialsException) {
             throw org.example.crm.shared.error.UnauthorizedException("Invalid username or password")
         }
     }

@@ -1,119 +1,104 @@
-import { useState } from 'react'
-import styled from 'styled-components'
+import React from 'react'
 import { Layout, Menu } from 'antd'
-import { Link, useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import {
   DashboardOutlined,
   TeamOutlined,
-  ShoppingCartOutlined,
-  BarChartOutlined,
-  SettingOutlined,
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
+  UserOutlined,
+  SettingOutlined
 } from '@ant-design/icons'
+import styled from 'styled-components'
+import { RootState } from '@store/index'
+import { UserRole } from '@models'
 
-const { Sider: AntSider } = Layout
+const { Sider } = Layout
 
-const StyledSider = styled(AntSider)`
-  background: white;
-  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
-  position: fixed;
-  height: 100vh;
-  left: 0;
-  top: 64px;
-  z-index: 100;
+interface SidebarProps {
+  collapsed: boolean
+}
+
+const StyledSider = styled(Sider)`
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 
   .ant-layout-sider-children {
     display: flex;
     flex-direction: column;
-  }
-
-  .ant-menu {
-    border-right: none;
+    height: 100vh;
   }
 `
 
-const CollapseButton = styled.button`
-  position: absolute;
-  right: -12px;
-  top: 24px;
-  width: 24px;
-  height: 24px;
-  background: white;
-  border: 1px solid var(--neutral-200);
-  border-radius: 50%;
+const Logo = styled.div`
+  height: 64px;
+  padding: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
-  color: var(--neutral-600);
-  z-index: 1;
+  background: #fff;
+  border-bottom: 1px solid #f0f0f0;
 
-  &:hover {
-    color: var(--primary-500);
-    border-color: var(--primary-500);
+  img {
+    height: 32px;
+    transition: all 0.2s;
   }
 `
 
-const menuItems = [
-  {
-    key: 'dashboard',
-    icon: <DashboardOutlined />,
-    label: <Link to="/">Dashboard</Link>,
-  },
-  {
-    key: 'customers',
-    icon: <TeamOutlined />,
-    label: <Link to="/customers">Customers</Link>,
-  },
-  {
-    key: 'orders',
-    icon: <ShoppingCartOutlined />,
-    label: <Link to="/orders">Orders</Link>,
-  },
-  {
-    key: 'reports',
-    icon: <BarChartOutlined />,
-    label: <Link to="/reports">Reports</Link>,
-  },
-  {
-    type: 'divider',
-  },
-  {
-    key: 'settings',
-    icon: <SettingOutlined />,
-    label: <Link to="/settings">Settings</Link>,
-  },
-]
-
-interface SidebarProps {
-  collapsed: boolean
-  onCollapse: (collapsed: boolean) => void
-}
-
-export const Sidebar = ({ collapsed, onCollapse }: SidebarProps) => {
+const Sidebar: React.FC<SidebarProps> = ({ collapsed }) => {
+  const navigate = useNavigate()
   const location = useLocation()
+  const { user } = useSelector((state: RootState) => state.auth)
+  const isAdmin = user.roles.includes(UserRole.ADMIN)
 
-  const selectedKey = menuItems.find(
-    item => item.key && location.pathname.startsWith(`/${item.key}`)
-  )?.key || 'dashboard'
+  const menuItems = [
+    {
+      key: '/dashboard',
+      icon: <DashboardOutlined />,
+      label: 'Dashboard'
+    },
+    {
+      key: '/customers',
+      icon: <TeamOutlined />,
+      label: 'Customers'
+    },
+    ...(isAdmin ? [
+      {
+        key: '/users',
+        icon: <UserOutlined />,
+        label: 'Users'
+      }
+    ] : []),
+    {
+      key: '/settings',
+      icon: <SettingOutlined />,
+      label: 'Settings'
+    }
+  ]
+
+  const handleMenuClick = ({ key }: { key: string }) => {
+    navigate(key)
+  }
 
   return (
     <StyledSider
-      width={250}
+      trigger={null}
       collapsible
       collapsed={collapsed}
-      trigger={null}
+      width={256}
     >
+      <Logo>
+        <img
+          src="/logo.svg"
+          alt="CRM Logo"
+          style={{ width: collapsed ? '32px' : '120px' }}
+        />
+      </Logo>
       <Menu
         mode="inline"
-        selectedKeys={[selectedKey]}
-        style={{ padding: '24px 0' }}
+        selectedKeys={[location.pathname]}
         items={menuItems}
+        onClick={handleMenuClick}
       />
-      <CollapseButton onClick={() => onCollapse(!collapsed)}>
-        {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-      </CollapseButton>
     </StyledSider>
   )
 }

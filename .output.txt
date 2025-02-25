@@ -1,0 +1,212 @@
+
+> crm-frontend@0.1.0 build
+> tsc && vite build
+
+[96msrc/components/forms/ContactForm/index.tsx[0m:[93m14[0m:[93m58[0m - [91merror[0m[90m TS6137: [0mCannot import type declaration files. Consider importing 'models' instead of '@types/models'.
+
+[7m14[0m import { ContactFormData, CommunicationPreference } from '@types/models'
+[7m  [0m [91m                                                         ~~~~~~~~~~~~~~~[0m
+
+[96msrc/components/forms/ContactForm/index.tsx[0m:[93m25[0m:[93m3[0m - [91merror[0m[90m TS6133: [0m'customerId' is declared but its value is never read.
+
+[7m25[0m   customerId,
+[7m  [0m [91m  ~~~~~~~~~~[0m
+
+[96msrc/components/forms/CustomerForm/index.tsx[0m:[93m2[0m:[93m39[0m - [91merror[0m[90m TS6133: [0m'Space' is declared but its value is never read.
+
+[7m2[0m import { Form, Input, Select, Button, Space } from 'antd'
+[7m [0m [91m                                      ~~~~~[0m
+
+[96msrc/components/forms/CustomerForm/index.tsx[0m:[93m14[0m:[93m68[0m - [91merror[0m[90m TS6137: [0mCannot import type declaration files. Consider importing 'models' instead of '@types/models'.
+
+[7m14[0m import { CustomerFormData, CustomerStatus, CustomerCategory } from '@types/models'
+[7m  [0m [91m                                                                   ~~~~~~~~~~~~~~~[0m
+
+[96msrc/components/forms/UserForm/index.tsx[0m:[93m2[0m:[93m39[0m - [91merror[0m[90m TS6133: [0m'Space' is declared but its value is never read.
+
+[7m2[0m import { Form, Input, Select, Button, Space } from 'antd'
+[7m [0m [91m                                      ~~~~~[0m
+
+[96msrc/components/forms/UserForm/index.tsx[0m:[93m14[0m:[93m24[0m - [91merror[0m[90m TS6133: [0m'UserRole' is declared but its value is never read.
+
+[7m14[0m import { UserFormData, UserRole } from '@types/models'
+[7m  [0m [91m                       ~~~~~~~~[0m
+
+[96msrc/components/forms/UserForm/index.tsx[0m:[93m14[0m:[93m40[0m - [91merror[0m[90m TS6137: [0mCannot import type declaration files. Consider importing 'models' instead of '@types/models'.
+
+[7m14[0m import { UserFormData, UserRole } from '@types/models'
+[7m  [0m [91m                                       ~~~~~~~~~~~~~~~[0m
+
+[96msrc/components/modals/ContactFormModal/index.tsx[0m:[93m8[0m:[93m42[0m - [91merror[0m[90m TS6137: [0mCannot import type declaration files. Consider importing 'models' instead of '@types/models'.
+
+[7m8[0m import { Contact, ContactFormData } from '@types/models'
+[7m [0m [91m                                         ~~~~~~~~~~~~~~~[0m
+
+[96msrc/components/modals/ContactFormModal/index.tsx[0m:[93m32[0m:[93m11[0m - [91merror[0m[90m TS2322: [0mType 'number | undefined' is not assignable to type 'number'.
+  Type 'undefined' is not assignable to type 'number'.
+
+[7m32[0m           id: initialValues.id,
+[7m  [0m [91m          ~~[0m
+
+  [96msrc/store/slices/contactSlice.ts[0m:[93m72[0m:[93m5[0m
+    [7m72[0m     id: number;
+    [7m  [0m [96m    ~~[0m
+    The expected type comes from property 'id' which is declared here on type '{ customerId: number; id: number; contact: Partial<Contact>; }'
+
+[96msrc/components/modals/CustomerFormModal/index.tsx[0m:[93m8[0m:[93m44[0m - [91merror[0m[90m TS6137: [0mCannot import type declaration files. Consider importing 'models' instead of '@types/models'.
+
+[7m8[0m import { Customer, CustomerFormData } from '@types/models'
+[7m [0m [91m                                           ~~~~~~~~~~~~~~~[0m
+
+[96msrc/components/modals/CustomerFormModal/index.tsx[0m:[93m28[0m:[93m41[0m - [91merror[0m[90m TS2322: [0mType 'number | undefined' is not assignable to type 'number'.
+  Type 'undefined' is not assignable to type 'number'.
+
+[7m28[0m         await dispatch(updateCustomer({ id: initialValues.id, customer: values })).unwrap()
+[7m  [0m [91m                                        ~~[0m
+
+  [96msrc/store/slices/customerSlice.ts[0m:[93m66[0m:[93m30[0m
+    [7m66[0m   async ({ id, customer }: { id: number; customer: Partial<Customer> }) => {
+    [7m  [0m [96m                             ~~[0m
+    The expected type comes from property 'id' which is declared here on type '{ id: number; customer: Partial<Customer>; }'
+
+[96msrc/components/modals/UserFormModal/index.tsx[0m:[93m8[0m:[93m36[0m - [91merror[0m[90m TS6137: [0mCannot import type declaration files. Consider importing 'models' instead of '@types/models'.
+
+[7m8[0m import { User, UserFormData } from '@types/models'
+[7m [0m [91m                                   ~~~~~~~~~~~~~~~[0m
+
+[96msrc/components/modals/UserFormModal/index.tsx[0m:[93m29[0m:[93m11[0m - [91merror[0m[90m TS2322: [0mType 'number | undefined' is not assignable to type 'number'.
+  Type 'undefined' is not assignable to type 'number'.
+
+[7m29[0m           id: initialValues.id,
+[7m  [0m [91m          ~~[0m
+
+  [96msrc/store/slices/userSlice.ts[0m:[93m63[0m:[93m26[0m
+    [7m63[0m   async ({ id, user }: { id: number; user: Partial<User> }) => {
+    [7m  [0m [96m                         ~~[0m
+    The expected type comes from property 'id' which is declared here on type '{ id: number; user: Partial<User>; }'
+
+[96msrc/components/modals/UserFormModal/index.tsx[0m:[93m34[0m:[93m35[0m - [91merror[0m[90m TS2345: [0mArgument of type 'UserFormData' is not assignable to parameter of type '{ username: string; email: string; password: string; roles: string[]; }'.
+  Types of property 'password' are incompatible.
+    Type 'string | undefined' is not assignable to type 'string'.
+      Type 'undefined' is not assignable to type 'string'.
+
+[7m34[0m         await dispatch(createUser(values)).unwrap()
+[7m  [0m [91m                                  ~~~~~~[0m
+
+[96msrc/pages/CustomerDetails/index.tsx[0m:[93m119[0m:[93m61[0m - [91merror[0m[90m TS18048: [0m'customer' is possibly 'undefined'.
+
+[7m119[0m       content: `Are you sure you want to delete customer "${customer.name}"? This will also delete all associated contacts.`,
+[7m   [0m [91m                                                            ~~~~~~~~[0m
+
+[96msrc/pages/CustomerDetails/index.tsx[0m:[93m180[0m:[93m9[0m - [91merror[0m[90m TS2322: [0mType 'Contact | null' is not assignable to type 'Partial<Contact> | undefined'.
+  Type 'null' is not assignable to type 'Partial<Contact> | undefined'.
+
+[7m180[0m         initialValues={selectedContact}
+[7m   [0m [91m        ~~~~~~~~~~~~~[0m
+
+  [96msrc/components/modals/ContactFormModal/index.tsx[0m:[93m13[0m:[93m3[0m
+    [7m13[0m   initialValues?: Partial<Contact>
+    [7m  [0m [96m  ~~~~~~~~~~~~~[0m
+    The expected type comes from property 'initialValues' which is declared here on type 'IntrinsicAttributes & ContactFormModalProps'
+
+[96msrc/pages/Customers/index.tsx[0m:[93m2[0m:[93m70[0m - [91merror[0m[90m TS6133: [0m'message' is declared but its value is never read.
+
+[7m2[0m import { Table, Card, Input, Button, Space, Tag, Select, Typography, message } from 'antd'
+[7m [0m [91m                                                                     ~~~~~~~[0m
+
+[96msrc/pages/Customers/index.tsx[0m:[93m167[0m:[93m9[0m - [91merror[0m[90m TS2322: [0mType 'Customer | null' is not assignable to type 'Partial<Customer> | undefined'.
+  Type 'null' is not assignable to type 'Partial<Customer> | undefined'.
+
+[7m167[0m         initialValues={selectedCustomer}
+[7m   [0m [91m        ~~~~~~~~~~~~~[0m
+
+  [96msrc/components/modals/CustomerFormModal/index.tsx[0m:[93m12[0m:[93m3[0m
+    [7m12[0m   initialValues?: Partial<Customer>
+    [7m  [0m [96m  ~~~~~~~~~~~~~[0m
+    The expected type comes from property 'initialValues' which is declared here on type 'IntrinsicAttributes & CustomerFormModalProps'
+
+[96msrc/pages/Settings/index.tsx[0m:[93m2[0m:[93m71[0m - [91merror[0m[90m TS6133: [0m'Divider' is declared but its value is never read.
+
+[7m2[0m import { Card, Form, Input, Select, Switch, Button, Tabs, Typography, Divider } from 'antd'
+[7m [0m [91m                                                                      ~~~~~~~[0m
+
+[96msrc/pages/Settings/index.tsx[0m:[93m60[0m:[93m29[0m - [91merror[0m[90m TS2339: [0mProperty 'email' does not exist on type '{ id: number | null; username: string | null; roles: string[]; }'.
+
+[7m60[0m                 email: user.email
+[7m  [0m [91m                            ~~~~~[0m
+
+[96msrc/pages/Users/index.tsx[0m:[93m21[0m:[93m32[0m - [91merror[0m[90m TS6137: [0mCannot import type declaration files. Consider importing 'models' instead of '@types/models'.
+
+[7m21[0m import { User, UserRole } from '@types/models'
+[7m  [0m [91m                               ~~~~~~~~~~~~~~~[0m
+
+[96msrc/pages/Users/index.tsx[0m:[93m132[0m:[93m9[0m - [91merror[0m[90m TS2322: [0mType 'User | null' is not assignable to type 'Partial<User> | undefined'.
+  Type 'null' is not assignable to type 'Partial<User> | undefined'.
+
+[7m132[0m         initialValues={selectedUser}
+[7m   [0m [91m        ~~~~~~~~~~~~~[0m
+
+  [96msrc/components/modals/UserFormModal/index.tsx[0m:[93m12[0m:[93m3[0m
+    [7m12[0m   initialValues?: Partial<User>
+    [7m  [0m [96m  ~~~~~~~~~~~~~[0m
+    The expected type comes from property 'initialValues' which is declared here on type 'IntrinsicAttributes & UserFormModalProps'
+
+[96msrc/pages/Users/index.tsx[0m:[93m148[0m:[93m11[0m - [91merror[0m[90m TS2322: [0mType 'ColumnsType<User>' is not assignable to type '(ColumnGroupType<User> | ColumnType<User>)[]'.
+  Type 'import("/Users/anton/IdeaProjects/spring-crm/frontend/node_modules/antd/es/table/interface").ColumnGroupType<import("/Users/anton/IdeaProjects/spring-crm/frontend/src/types/models").User> | import("/Users/anton/IdeaProjects/spring-crm/frontend/node_modules/antd/es/table/interface").ColumnType<...>' is not assignable to type 'import("/Users/anton/IdeaProjects/spring-crm/frontend/node_modules/antd/es/table/interface").ColumnGroupType<User> | import("/Users/anton/IdeaProjects/spring-crm/frontend/node_modules/antd/es/table/interface").ColumnType<User>'.
+    Type 'ColumnGroupType<User>' is not assignable to type 'ColumnGroupType<User> | ColumnType<User>'.
+      Type 'import("/Users/anton/IdeaProjects/spring-crm/frontend/node_modules/antd/es/table/interface").ColumnGroupType<import("/Users/anton/IdeaProjects/spring-crm/frontend/src/types/models").User>' is not assignable to type 'import("/Users/anton/IdeaProjects/spring-crm/frontend/node_modules/antd/es/table/interface").ColumnGroupType<User>'.
+        Types of property 'title' are incompatible.
+          Type 'import("/Users/anton/IdeaProjects/spring-crm/frontend/node_modules/antd/es/table/interface").ColumnTitle<import("/Users/anton/IdeaProjects/spring-crm/frontend/src/types/models").User>' is not assignable to type 'import("/Users/anton/IdeaProjects/spring-crm/frontend/node_modules/antd/es/table/interface").ColumnTitle<User>'.
+            Type '(props: ColumnTitleProps<User>) => ReactNode' is not assignable to type 'ColumnTitle<User>'.
+              Type '(props: import("/Users/anton/IdeaProjects/spring-crm/frontend/node_modules/antd/es/table/interface").ColumnTitleProps<import("/Users/anton/IdeaProjects/spring-crm/frontend/src/types/models").User>) => React.ReactNode' is not assignable to type '(props: import("/Users/anton/IdeaProjects/spring-crm/frontend/node_modules/antd/es/table/interface").ColumnTitleProps<User>) => React.ReactNode'.
+                Types of parameters 'props' and 'props' are incompatible.
+                  Type 'import("/Users/anton/IdeaProjects/spring-crm/frontend/node_modules/antd/es/table/interface").ColumnTitleProps<User>' is not assignable to type 'import("/Users/anton/IdeaProjects/spring-crm/frontend/node_modules/antd/es/table/interface").ColumnTitleProps<import("/Users/anton/IdeaProjects/spring-crm/frontend/src/types/models").User>'.
+                    Types of property 'sortColumn' are incompatible.
+                      Type 'import("/Users/anton/IdeaProjects/spring-crm/frontend/node_modules/antd/es/table/interface").ColumnType<User> | undefined' is not assignable to type 'import("/Users/anton/IdeaProjects/spring-crm/frontend/node_modules/antd/es/table/interface").ColumnType<import("/Users/anton/IdeaProjects/spring-crm/frontend/src/types/models").User> | undefined'.
+                        Type 'import("/Users/anton/IdeaProjects/spring-crm/frontend/node_modules/antd/es/table/interface").ColumnType<User>' is not assignable to type 'import("/Users/anton/IdeaProjects/spring-crm/frontend/node_modules/antd/es/table/interface").ColumnType<import("/Users/anton/IdeaProjects/spring-crm/frontend/src/types/models").User>'.
+                          Types of property 'title' are incompatible.
+                            Type 'import("/Users/anton/IdeaProjects/spring-crm/frontend/node_modules/antd/es/table/interface").ColumnTitle<User>' is not assignable to type 'import("/Users/anton/IdeaProjects/spring-crm/frontend/node_modules/antd/es/table/interface").ColumnTitle<import("/Users/anton/IdeaProjects/spring-crm/frontend/src/types/models").User>'.
+                              Type '(props: ColumnTitleProps<User>) => ReactNode' is not assignable to type 'ColumnTitle<User>'.
+                                Type '(props: import("/Users/anton/IdeaProjects/spring-crm/frontend/node_modules/antd/es/table/interface").ColumnTitleProps<User>) => React.ReactNode' is not assignable to type '(props: import("/Users/anton/IdeaProjects/spring-crm/frontend/node_modules/antd/es/table/interface").ColumnTitleProps<import("/Users/anton/IdeaProjects/spring-crm/frontend/src/types/models").User>) => React.ReactNode'.
+                                  Types of parameters 'props' and 'props' are incompatible.
+                                    Type 'import("/Users/anton/IdeaProjects/spring-crm/frontend/node_modules/antd/es/table/interface").ColumnTitleProps<import("/Users/anton/IdeaProjects/spring-crm/frontend/src/types/models").User>' is not assignable to type 'import("/Users/anton/IdeaProjects/spring-crm/frontend/node_modules/antd/es/table/interface").ColumnTitleProps<User>'.
+                                      Types of property 'sortColumn' are incompatible.
+                                        Type 'import("/Users/anton/IdeaProjects/spring-crm/frontend/node_modules/antd/es/table/interface").ColumnType<import("/Users/anton/IdeaProjects/spring-crm/frontend/src/types/models").User> | undefined' is not assignable to type 'import("/Users/anton/IdeaProjects/spring-crm/frontend/node_modules/antd/es/table/interface").ColumnType<User> | undefined'.
+                                          Type 'import("/Users/anton/IdeaProjects/spring-crm/frontend/node_modules/antd/es/table/interface").ColumnType<import("/Users/anton/IdeaProjects/spring-crm/frontend/src/types/models").User>' is not assignable to type 'import("/Users/anton/IdeaProjects/spring-crm/frontend/node_modules/antd/es/table/interface").ColumnType<User>'.
+                                            Types of property 'sorter' are incompatible.
+                                              Type 'boolean | import("/Users/anton/IdeaProjects/spring-crm/frontend/node_modules/antd/es/table/interface").CompareFn<import("/Users/anton/IdeaProjects/spring-crm/frontend/src/types/models").User> | { ...; } | undefined' is not assignable to type 'boolean | import("/Users/anton/IdeaProjects/spring-crm/frontend/node_modules/antd/es/table/interface").CompareFn<User> | { compare?: import("/Users/anton/IdeaProjects/spring-crm/frontend/node_modules/antd/es/table/interface").CompareFn<User> | undefined; multiple?: number | undefined; } | undefined'.
+                                                Type 'CompareFn<User>' is not assignable to type 'boolean | CompareFn<User> | { compare?: CompareFn<User> | undefined; multiple?: number | undefined; } | undefined'.
+                                                  Type 'import("/Users/anton/IdeaProjects/spring-crm/frontend/node_modules/antd/es/table/interface").CompareFn<import("/Users/anton/IdeaProjects/spring-crm/frontend/src/types/models").User>' is not assignable to type 'import("/Users/anton/IdeaProjects/spring-crm/frontend/node_modules/antd/es/table/interface").CompareFn<User>'.
+                                                    Type 'User' is not assignable to type 'import("/Users/anton/IdeaProjects/spring-crm/frontend/src/types/models").User'.
+                                                      Types of property 'roles' are incompatible.
+                                                        Type 'string[]' is not assignable to type 'UserRole[]'.
+                                                          Type 'string' is not assignable to type 'UserRole'.
+
+[7m148[0m           columns={columns}
+[7m   [0m [91m          ~~~~~~~[0m
+
+  [96mnode_modules/antd/es/table/InternalTable.d.ts[0m:[93m10[0m:[93m5[0m
+    [7m10[0m     columns?: ColumnsType<RecordType>;
+    [7m  [0m [96m    ~~~~~~~[0m
+    The expected type comes from property 'columns' which is declared here on type 'IntrinsicAttributes & TableProps<User> & { children?: ReactNode; } & RefAttributes<Reference>'
+
+[96msrc/styles/theme.ts[0m:[93m37[0m:[93m7[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'paddingHorizontal' does not exist in type 'Partial<ComponentToken> & Partial<AliasToken> & { algorithm?: boolean | MappingAlgorithm | MappingAlgorithm[] | undefined; }'.
+
+[7m37[0m       paddingHorizontal: 16
+[7m  [0m [91m      ~~~~~~~~~~~~~~~~~[0m
+
+
+Found 24 errors in 11 files.
+
+Errors  Files
+     2  src/components/forms/ContactForm/index.tsx[90m:14[0m
+     2  src/components/forms/CustomerForm/index.tsx[90m:2[0m
+     3  src/components/forms/UserForm/index.tsx[90m:2[0m
+     2  src/components/modals/ContactFormModal/index.tsx[90m:8[0m
+     2  src/components/modals/CustomerFormModal/index.tsx[90m:8[0m
+     3  src/components/modals/UserFormModal/index.tsx[90m:8[0m
+     2  src/pages/CustomerDetails/index.tsx[90m:119[0m
+     2  src/pages/Customers/index.tsx[90m:2[0m
+     2  src/pages/Settings/index.tsx[90m:2[0m
+     3  src/pages/Users/index.tsx[90m:21[0m
+     1  src/styles/theme.ts[90m:37[0m

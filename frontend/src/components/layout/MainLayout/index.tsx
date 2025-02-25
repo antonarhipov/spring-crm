@@ -1,8 +1,9 @@
-import { useState } from 'react'
-import styled from 'styled-components'
+import React from 'react'
 import { Layout } from 'antd'
-import { Header } from '../Header'
-import { Sidebar } from '../Sidebar'
+import { Outlet } from 'react-router-dom'
+import styled from 'styled-components'
+import Header from '../Header'
+import Sidebar from '../Sidebar'
 
 const { Content } = Layout
 
@@ -10,38 +11,29 @@ const StyledLayout = styled(Layout)`
   min-height: 100vh;
 `
 
-const MainContent = styled(Content)`
-  margin-left: 250px;
-  margin-top: 64px;
+const StyledContent = styled(Content)`
+  margin: 24px;
   padding: 24px;
-  background: var(--neutral-50);
-  min-height: calc(100vh - 64px);
-  transition: margin-left 0.2s;
-
-  &.sidebar-collapsed {
-    margin-left: 80px;
-  }
+  background: #fff;
+  border-radius: 8px;
+  min-height: auto;
 `
 
-interface MainLayoutProps {
-  children: React.ReactNode
-}
+const MainLayout: React.FC = () => {
+  const [collapsed, setCollapsed] = React.useState(false)
 
-export const MainLayout = ({ children }: MainLayoutProps) => {
-  const [collapsed, setCollapsed] = useState(false)
-
-  const handleCollapse = (value: boolean) => {
-    setCollapsed(value)
+  const toggleSidebar = () => {
+    setCollapsed(!collapsed)
   }
 
   return (
     <StyledLayout>
-      <Header />
+      <Sidebar collapsed={collapsed} />
       <Layout>
-        <Sidebar collapsed={collapsed} onCollapse={handleCollapse} />
-        <MainContent className={collapsed ? 'sidebar-collapsed' : ''}>
-          {children}
-        </MainContent>
+        <Header collapsed={collapsed} onToggle={toggleSidebar} />
+        <StyledContent>
+          <Outlet />
+        </StyledContent>
       </Layout>
     </StyledLayout>
   )
