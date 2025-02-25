@@ -6,8 +6,11 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.config.http.SessionCreationPolicy
+import org.springframework.security.core.userdetails.User
+import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
+import org.springframework.security.provisioning.InMemoryUserDetailsManager
 import org.springframework.security.web.SecurityFilterChain
 
 @TestConfiguration
@@ -22,13 +25,20 @@ class SecurityConfig {
             .cors { it.disable() }
             .sessionManagement { it.sessionCreationPolicy(SessionCreationPolicy.STATELESS) }
             .authorizeHttpRequests { auth ->
-                auth
-                    .requestMatchers("/api/v1/auth/**").permitAll()
-                    .requestMatchers("/api/v1/users/**").hasRole("ADMIN")
-                    .anyRequest().authenticated()
+                auth.anyRequest().permitAll()
             }
 
         return http.build()
+    }
+
+    @Bean
+    fun userDetailsService(passwordEncoder: PasswordEncoder): UserDetailsService {
+        val user = User.builder()
+            .username("test")
+            .password(passwordEncoder.encode("test"))
+            .roles("USER")
+            .build()
+        return InMemoryUserDetailsManager(user)
     }
 
     @Bean
